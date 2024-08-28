@@ -92,13 +92,22 @@ _passwordController.addListener(_updateButtonState);
                   const SizedBox(
                     height: 180,
                   ),
-                  CUstomButton(
-                    onPressed: () {
-                      context.read<LoginBloc>().add(LoginButtonPressed(
-                          username: _usernameController.text,
-                          password: _passwordController.text));
+                   ValueListenableBuilder<bool>(
+                    valueListenable: _isButtonEnable,
+                    builder: (context, isEnabled, child) {
+                      return CUstomButton(
+                        onPressed: isEnabled
+                            ? () {
+                                context.read<LoginBloc>().add(LoginButtonPressed(
+                                  username: _usernameController.text,
+                                  password: _passwordController.text,
+                                ));
+                              }
+                            : null, // Deshabilitar el botón si no es válido
+                        color: isEnabled ? Colors.blue : Colors.grey,
+                      );
                     },
-                  )
+                  ),
                 ],
               );
             },

@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 
 class CUstomButton extends StatelessWidget {
   final void Function()? onPressed;
-  const CUstomButton({super.key, required this.onPressed});
+  final Color color;
+  const CUstomButton({super.key, required this.onPressed, required this.color});
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +13,7 @@ class CUstomButton extends StatelessWidget {
     return ElevatedButton(
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
-        backgroundColor: theme.primaryColor,
+        backgroundColor: color,
         minimumSize: Size(Screens.width(context) / 2, 50),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(Const.borderRadiusButton),
